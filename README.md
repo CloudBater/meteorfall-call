@@ -61,8 +61,8 @@ If any of these red on your PR, a human won't even look:
 ## Setup
 
 ```bash
-git clone https://github.com/CloudBater/ai-sticky-note-screen.git
-cd ai-sticky-note-screen
+git clone https://github.com/CloudBater/meteorfall-call.git
+cd meteorfall-call
 cp .env.example .env
 # paste the GEMINI_API_KEY we sent you out-of-band
 cp PLAN.template.md PLAN.md
