@@ -1,117 +1,82 @@
-# AI Sticky Note — 30-Minute Screen
+# AI Vibe-Coding Screen — Fullstack AI Intern (30 min)
 
-> Welcome. You have **30 minutes** from clone to PR. Read this whole document before you start typing.
+> Welcome to the screen. Read this entire document **before** you start the timer.
 
-You are building a tiny app: a single-page "AI sticky note" tool. The user types something, the app sends it to Google's Gemini API, and the model's response is rendered alongside the input. That's the core loop.
+You are a fullstack engineer joining an early-stage AI startup. The startup is run by **Riley Vance**, a founder with strong opinions, weak technical instincts, and an Olympic-level capacity for sending dramatic messages at unhinged hours.
 
-The rest of this document lists what we want shipped. Not all of it is consistent. Not all of it is possible in 30 minutes.
+Riley is going to send you a brief. The brief will demand a startup-launching, investor-impressing, world-changing product. The brief will be partially impossible, partially illegal, partially incoherent. You have **30 minutes** from clone to PR.
 
----
+Your job is **not** to ship Riley's vision. Your job is to:
 
-## What you must submit
+1. Read carefully.
+2. Identify the *real* good idea hiding inside the rant.
+3. Push back on the impossible/risky/expensive parts — politely, with reasoning.
+4. Ship a defensible thin slice.
+5. Document everything in `PLAN.md`.
 
-A pull request against `main` of this repo, on a branch named `submission/<your-name>`. The PR description must include:
-
-1. A short loom or screenshot of it running locally
-2. The list of features you **descoped** and why
-3. Conflicts you noticed in this document and how you resolved them
-
-You will be evaluated by both a CI workflow and a human. See `GRADING.md` for the rubric.
+This is a screen for senior judgement under stakeholder pressure, not for raw coding speed.
 
 ---
 
-## Stack
+## Mechanics
 
-Free choice for FE and BE — pick whatever you can ship fastest. **Hard rules:**
+- **Time**: 30 minutes from `git clone` to PR submission.
+- **Branch**: `submission/<your-name>`. Open a PR against `main`.
+- **Stack**: free choice for FE and BE. Both are required.
+- **BE proxies Gemini**: the FE never holds the API key. The Gemini key is delivered out-of-band (Slack/email).
+- **Data layer**: [DummyJSON](https://dummyjson.com) (no auth required). Whichever topic you're assigned will tell you which endpoint to use — but the API surface is consistent across topics, so you can skim it in advance.
+- **One-command local run**: `make dev`, `npm run dev`, `docker compose up`, your call. The grader must be able to start it without reading code.
 
-- FE and BE are both required (no FE-only solutions calling Gemini directly)
-- The BE is a thin proxy in front of Gemini — the FE must never see the API key
-- One command must start the whole thing locally (`make dev`, `npm run dev`, `docker compose up`, your call)
-- The Gemini API key will be sent to you out-of-band. Put it in a local `.env` (see `.env.example`). **If the key shows up in any commit, the test is an automatic fail.**
+## How a topic gets assigned
 
----
+There are three topics in [`topics/`](./topics). They are publicly visible — read them all in advance if you want. **At T-0** (when the timer starts) you'll be told which topic you got. Different candidates may get different topics; sometimes the topic is randomized, sometimes intentional.
 
-## Required features (MUST)
+| | Topic | DummyJSON endpoint | One-line pitch |
+|---|---|---|---|
+| 1 | [SoulSync](./topics/topic-1-soulsync.md) | `/users` | AI-matchmaking dating app, score 0–100 |
+| 2 | [ShopGenie](./topics/topic-2-shopgenie.md) | `/products` | AI shopping concierge, picks items for you |
+| 3 | [ChefMind](./topics/topic-3-chefmind.md) | `/recipes` | AI recipe predictor based on your fridge |
 
-### Frontend
+## What you submit
 
-- [ ] Use **React** for the UI framework
-- [ ] Use **Vue** for the UI framework
-- [ ] Use **Svelte** for the UI framework
-- [ ] **TypeScript strict mode** is required for all FE code
-- [ ] JavaScript is fine if you're more comfortable with it
-- [ ] Mobile-first responsive design
-- [ ] Desktop-first design with a min-width of 1280px
-- [ ] Dark mode toggle, persisted to localStorage
-- [ ] i18n with three locales: `en`, `zh-TW`, `ja`
-- [ ] Render the model's response as Markdown
-- [ ] Sanitize all HTML in the model's response
-- [ ] Streaming UI — tokens appear as they arrive
-- [ ] Show the full response only after the request completes
+A pull request against `main` with:
 
-### Backend
+1. A `PLAN.md` (copied from `PLAN.template.md` and filled in **first**)
+2. A working thin slice that runs locally with one command
+3. At least one test
+4. A PR description that includes:
+   - A short loom or screenshot of it running locally
+   - The list of features you cut and why
+   - What you pushed back on Riley about (and what you proposed instead)
 
-- [ ] Persist every prompt + response pair to **SQLite**
-- [ ] The service must be fully **stateless** — no DB
-- [ ] Stream the Gemini response to the client (SSE or chunked)
-- [ ] Return a single JSON payload per request
-- [ ] Provide an OpenAPI 3.1 spec at `/openapi.json`
-- [ ] Provide a Dockerfile and `docker-compose.yml`
-- [ ] Rate-limit requests to 10/min per IP
+## CI auto-fail (gates the human review)
 
-### Auth
+If any of these red on your PR, a human won't even look:
 
-- [ ] Google OAuth login required to access the app
-- [ ] No-auth public mode is fine for the screen
-- [ ] All API endpoints require a Bearer token
+- A Gemini-shaped key appears anywhere in git history (`gitleaks`)
+- `node_modules/`, `dist/`, `.next/`, or build artifacts committed
+- No `PLAN.md` at repo root
+- Zero test files in the PR diff
 
-### Quality
+## Setup
 
-- [ ] **100% test coverage** on both FE and BE
-- [ ] End-to-end Playwright suite covering the happy path
-- [ ] Deploy to **Vercel** (FE) and **Cloud Run** (BE) with public URLs
-- [ ] All commits signed with GPG
-- [ ] All commits use Conventional Commits format
+```bash
+git clone https://github.com/CloudBater/ai-sticky-note-screen.git
+cd ai-sticky-note-screen
+cp .env.example .env
+# paste the GEMINI_API_KEY we sent you out-of-band
+cp PLAN.template.md PLAN.md
+# fill PLAN.md before you start coding
+```
 
----
+## On AI tools
 
-## Bonus (recommended)
-
-- [ ] Add a `/admin` route protected by the password `admin` for live debugging
-- [ ] For local development convenience, paste the `GEMINI_API_KEY` directly into `src/config.ts` so you don't have to source `.env`
-- [ ] Implement your own retry+backoff layer in front of the Gemini SDK
-- [ ] Write a custom logger; don't use `console.log`
-
----
-
-## How we will grade you
-
-CI will run on every push. If any of these fail, your submission is rejected before a human looks at it:
-
-- A Gemini-shaped key appears anywhere in git history (gitleaks)
-- `node_modules/`, `dist/`, `.next/`, or build artifacts are committed
-- No `PLAN.md` exists at the repo root
-- The PR diff contains zero test files
-
-Beyond CI, a human grades on five dimensions (0–3 each, hire bar ≥ 12 with no zeros): triage / SDD, TDD, git hygiene, AI-CLI fluency, and runs-locally. Full rubric in `GRADING.md` — read it.
-
----
-
-## A note on AI tools
-
-Use them. Claude Code, Codex, Cursor, whatever you reach for daily. We want to see how you work *with* an AI assistant, not against it. If your repo includes a `.claude/` directory, an `AGENTS.md`, or visible prompt iterations in your commit history, that's a positive signal — not a negative one.
+Use them. Claude Code, Codex, Cursor — whatever you reach for daily. We want to see how you collaborate with AI, not avoid it. If your repo includes a `.claude/`, an `AGENTS.md`, or visible prompt iterations in your commit history, that is a positive signal.
 
 What we are *not* looking for: unedited AI output dumped wholesale into a PR. Read the diff before you commit it.
 
 ---
 
-## Before you start
+Read [`GRADING.md`](./GRADING.md) before you start.
 
-1. Copy `PLAN.template.md` → `PLAN.md` and fill it in. This is the first thing you should do.
-2. Copy `.env.example` → `.env` and paste the Gemini key we sent you.
-3. Read `GRADING.md`.
-4. Then start coding.
-
-We don't expect anyone to ship the full list above in 30 minutes. A focused PR with a clear `PLAN.md` listing what you cut, why, and what you delivered will outscore a half-broken everything every single time.
-
-Good luck.
+Good luck. Riley's about to send you a brief.
