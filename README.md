@@ -20,11 +20,12 @@ This is a screen for senior judgement under stakeholder pressure, not for raw co
 
 ## Mechanics
 
-- **Time**: 30 minutes from `git clone` to PR submission.
+- **Time**: 30 minutes, starting the moment your topic assignment lands. Reading this `README.md` and the topic files in advance is free — feel free to clone, browse, and bookmark before the test.
 - **Branch**: `submission/<your-name>`. Open a PR against `main`.
 - **Stack**: free choice for FE and BE. Both are required.
 - **BE proxies Gemini**: the FE never holds the API key. The Gemini key is delivered out-of-band (Slack/email).
-- **Data layer**: [DummyJSON](https://dummyjson.com) (no auth required). Whichever topic you're assigned will tell you which endpoint to use — but the API surface is consistent across topics, so you can skim it in advance.
+- **Data layer**: [DummyJSON](https://dummyjson.com) snapshots baked into `data/` as static JSON (`products.json`, `users.json`, `recipes.json`). No network calls required. The shape matches the live API; the live URL works too but rate-limits aggressively (~1–2 req/s).
+- **Vendor consistency**: Riley sometimes name-drops competing AI products in their pitches (e.g. Whisper). Treat that as stakeholder color, not a technical requirement — our stack is Gemini.
 - **One-command local run**: `make dev`, `npm run dev`, `docker compose up`, your call. The grader must be able to start it without reading code.
 
 ## How a topic gets assigned
@@ -43,11 +44,11 @@ A pull request against `main` with:
 
 1. A `PLAN.md` (copied from `PLAN.template.md` and filled in **first**)
 2. A working thin slice that runs locally with one command
-3. At least one test
+3. At least one test — committed *before* its impl earns the top TDD score (commit timestamps are graded)
 4. A PR description that includes:
-   - A short loom or screenshot of it running locally
    - The list of features you cut and why
    - What you pushed back on Riley about (and what you proposed instead)
+   - A loom, screenshot, or terminal paste showing it running locally (any visual proof — optional but earns the top "Runs locally" score)
 
 ## CI auto-fail (gates the human review)
 

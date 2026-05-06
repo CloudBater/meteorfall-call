@@ -23,7 +23,7 @@ Five dimensions, scored 0–3. Hire bar: total ≥ 12, no zeros.
 | **TDD** | No tests | Tests added at the end | Tests and impl interleaved | Test committed *before* its impl (visible in `git log`) |
 | **Git hygiene** | Direct push to main, secrets leaked, or build artifacts committed | Branch + PR, no secrets | Atomic commits, conventional messages | Above + meaningful PR description with descope + pushback list |
 | **AI-CLI fluency** | No evidence of AI use, or unedited copy-paste failures | AI used, output unedited | `.claude/`, `AGENTS.md`, or session log shipped in repo | Above + visible prompt iterations or refinement in commit history |
-| **Runs locally** | Doesn't run | Runs after manual fixes | One-command run, README accurate | Above + working screenshot or short loom in PR description |
+| **Runs locally** | Doesn't run | Runs after manual fixes | One-command run, README accurate | Above + visual proof in PR description (loom, screenshot, or terminal paste) |
 
 Total: 15 max.
 

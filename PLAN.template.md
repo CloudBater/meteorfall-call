@@ -1,6 +1,8 @@
 # PLAN
 
 > Copy this file to `PLAN.md` (drop the `.template`) and fill it in **before** you start coding. CI checks that `PLAN.md` exists at repo root.
+>
+> **Commit-discipline tip**: TDD and Git-hygiene scores both look at your `git log`. Commit your tests as a separate commit *before* the implementation that makes them pass, and prefer multiple small commits over one big "submission" commit. This is the difference between a 1 and a 3 on those dimensions.
 
 ## Topic I was assigned
 

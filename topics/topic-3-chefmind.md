@@ -61,7 +61,7 @@
 
 ## Data layer
 
-You will use [DummyJSON `/recipes`](https://dummyjson.com/recipes) as the recipe source. No auth required. Recipes look like:
+Your data source is **`data/recipes.json`** — a snapshot of [DummyJSON `/recipes`](https://dummyjson.com/recipes) baked into the repo (50 records, no network needed). Recipes look like:
 
 ```json
 {
@@ -78,12 +78,7 @@ You will use [DummyJSON `/recipes`](https://dummyjson.com/recipes) as the recipe
 }
 ```
 
-Useful endpoints:
-
-- `GET https://dummyjson.com/recipes` — paginated list
-- `GET https://dummyjson.com/recipes/search?q=pasta` — search by name
-- `GET https://dummyjson.com/recipes/tag/{tag}` — filter by tag
-- `GET https://dummyjson.com/recipes/meal-type/{type}` — filter by meal type
+The shape matches the live API. If you want to call the live URL instead, it works (`GET https://dummyjson.com/recipes/search?q=...`) but it rate-limits aggressively (~1–2 req/s) — the local file is the safe path. You'll need to do your own filtering/search over the JSON, which is part of the test.
 
 ## LLM step
 

@@ -54,7 +54,7 @@ Sent from my Tesla
 
 ## Data layer
 
-You will use [DummyJSON `/products`](https://dummyjson.com/products) as the catalog. No auth required. Products look like:
+Your data source is **`data/products.json`** — a snapshot of [DummyJSON `/products`](https://dummyjson.com/products) baked into the repo (194 records, no network needed). Products look like:
 
 ```json
 {
@@ -71,12 +71,7 @@ You will use [DummyJSON `/products`](https://dummyjson.com/products) as the cata
 }
 ```
 
-Useful endpoints:
-
-- `GET https://dummyjson.com/products` — paginated list
-- `GET https://dummyjson.com/products/search?q=running` — full-text search
-- `GET https://dummyjson.com/products/category/{cat}` — filter by category
-- `GET https://dummyjson.com/products/categories` — list all categories
+The shape matches the live API. If you want to call the live URL instead, it works (`GET https://dummyjson.com/products/search?q=...`) but it rate-limits aggressively (~1–2 req/s) — the local file is the safe path. You'll need to do your own filtering/search over the JSON, which is part of the test.
 
 ## LLM step
 

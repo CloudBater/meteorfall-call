@@ -53,7 +53,7 @@ accurate. measure it somehow. you'll figure it out.
 
 ## Data layer
 
-You will use [DummyJSON `/users`](https://dummyjson.com/users) as the source of profile data. No auth required. Each user looks like:
+Your data source is **`data/users.json`** — a snapshot of [DummyJSON `/users`](https://dummyjson.com/users) baked into the repo (208 records, no network needed). Each user looks like:
 
 ```json
 {
@@ -72,11 +72,7 @@ You will use [DummyJSON `/users`](https://dummyjson.com/users) as the source of 
 }
 ```
 
-Useful endpoints:
-
-- `GET https://dummyjson.com/users` — paginated list
-- `GET https://dummyjson.com/users/{id}` — single user
-- `GET https://dummyjson.com/users/search?q=...` — search by name
+The shape matches the live API. If you want to call the live URL instead, it works (`GET https://dummyjson.com/users/{id}`) but it rate-limits aggressively (~1–2 req/s) — the local file is the safe path.
 
 ## LLM step
 
