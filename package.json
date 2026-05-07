@@ -1,0 +1,25 @@
+{
+  "name": "meteorfall-call",
+  "version": "1.0.0",
+  "description": "> Welcome to the screen. Read this entire document **before** you start the timer.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "test": "npm test --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudBater/meteorfall-call.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/CloudBater/meteorfall-call/issues"
+  },
+  "homepage": "https://github.com/CloudBater/meteorfall-call#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
