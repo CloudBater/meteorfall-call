@@ -2,9 +2,11 @@
 
 > Welcome to the screen. Read this entire document **before** you start coding.
 
-You are a fullstack engineer joining an early-stage AI startup. Your founder will send you a brief that demands a startup-launching, investor-impressing, world-changing product — and that brief will be partially impossible, partially illegal, partially incoherent.
+You are a fullstack engineer joining an early-stage AI startup. The startup is run by **Riley Vance**, a founder with strong opinions, weak technical instincts, and an Olympic-level capacity for sending dramatic messages at unhinged hours.
 
-Your job is **not** to ship the vision. Your job is to:
+Riley is going to send you a brief. The brief will demand a startup-launching, investor-impressing, world-changing product. The brief will be partially impossible, partially illegal, partially incoherent.
+
+Your job is **not** to ship Riley's vision. Your job is to:
 
 1. Read carefully.
 2. Identify the *real* good idea hiding inside the rant.
@@ -18,12 +20,24 @@ This is a screen for senior judgement under stakeholder pressure, not for raw co
 
 ## Mechanics
 
-- **Format**: take-home. The HR interview invitation email tells you the brief and ships you the Gemini API key.
+- **Format**: take-home. The HR interview invitation email tells you which topic you got and ships you the Gemini API key.
 - **Deadline**: open your PR **at least 24 hours before** your scheduled interview slot. We need time to grade it before we sit down with you.
 - **Tools**: any tool, any method. Claude Code, Codex, Cursor, web research, pair programming with a friend — whatever you'd actually reach for. The whole point is to see how you work, not to handicap you.
 - **Stack**: free choice for FE and BE. Both are required.
 - **BE proxies Gemini**: the FE never holds the API key. The Gemini key is delivered with the same HR invitation email.
+- **Data layer**: [DummyJSON](https://dummyjson.com) snapshots baked into `data/` as static JSON (`products.json`, `users.json`, `recipes.json`). No network calls required. The shape matches the live API; the live URL works too but rate-limits aggressively (~1–2 req/s).
+- **Vendor consistency**: Riley sometimes name-drops competing AI products in their pitches (e.g. Whisper). Treat that as stakeholder color, not a technical requirement — our stack is Gemini.
 - **One-command local run**: `make dev`, `npm run dev`, `docker compose up`, your call. The grader must be able to start it without reading code.
+
+## How a topic gets assigned
+
+There are three topics in [`topics/`](./topics). They are publicly visible — read them all when you get the invite. The HR email tells you which one is yours. Different candidates may get different topics; sometimes the topic is randomized, sometimes intentional.
+
+| | Topic | DummyJSON endpoint | One-line pitch |
+|---|---|---|---|
+| 1 | [SoulSync](./topics/topic-1-soulsync.md) | `/users` | AI-matchmaking dating app, score 0–100 |
+| 2 | [ShopGenie](./topics/topic-2-shopgenie.md) | `/products` | AI shopping concierge, picks items for you |
+| 3 | [ChefMind](./topics/topic-3-chefmind.md) | `/recipes` | AI recipe predictor based on your fridge |
 
 ## What you submit
 
@@ -66,3 +80,5 @@ What we are *not* looking for: unedited AI output dumped wholesale into a PR. Re
 ---
 
 Read [`GRADING.md`](./GRADING.md) before you start.
+
+Good luck. Riley's about to send you a brief.

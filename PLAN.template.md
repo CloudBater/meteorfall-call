@@ -4,7 +4,7 @@
 
 ## Topic I was assigned
 
-(filled in once role-play topics land)
+(Topic 1 / 2 / 3 — and the title)
 
 ## Stack I picked
 
