@@ -23,7 +23,8 @@ This is a screen for senior judgement under stakeholder pressure, not for raw co
 - **Format**: take-home. The HR interview invitation email tells you which topic you got and ships you the Gemini API key.
 - **Deadline**: open your PR **at least 24 hours before** your scheduled interview slot. We need time to grade it before we sit down with you.
 - **Tools**: any tool, any method. Claude Code, Codex, Cursor, web research, pair programming with a friend — whatever you'd actually reach for. The whole point is to see how you work, not to handicap you.
-- **Submission flow**: fork this repo to your own GitHub account, push `submission/<your-name>` to your fork, and open a PR from your fork against `CloudBater/meteorfall-call:main`. You don't have write access to the upstream repo — that's expected.
+- **Submission flow**: fork this repo to your own GitHub account, push `submission/<your-github-username>` to your fork, and open a PR from your fork against `CloudBater/meteorfall-call:main`. You don't have write access to the upstream repo — that's expected.
+- **CI on your PR**: if this is your first PR to this repo, GitHub holds workflow runs for maintainer approval. Empty checks aren't a failure — the grader will release them when they pick up the PR. Don't force-push to "fix" it.
 - **Stack**: free choice for FE and BE. Both are required.
 - **BE proxies Gemini**: the FE never holds the API key. The Gemini key is delivered with the same HR invitation email.
 - **Data layer**: [DummyJSON](https://dummyjson.com) snapshots baked into `data/` as static JSON (`products.json`, `users.json`, `recipes.json`). No network calls required. The shape matches the live API; the live URL works too but rate-limits aggressively (~1–2 req/s).
@@ -67,7 +68,7 @@ Fork `CloudBater/meteorfall-call` to your own GitHub account first (use the **Fo
 
 ```bash
 # clone YOUR fork, not the upstream
-git clone https://github.com/<your-name>/meteorfall-call.git
+git clone https://github.com/<your-github-username>/meteorfall-call.git
 cd meteorfall-call
 cp .env.example .env
 # paste the GEMINI_API_KEY from your HR invitation email
@@ -78,12 +79,12 @@ cp PLAN.template.md PLAN.md
 When you're ready to submit:
 
 ```bash
-git checkout -b submission/<your-name>
+git checkout -b submission/<your-github-username>
 # ... commit your work ...
-git push -u origin submission/<your-name>
+git push -u origin submission/<your-github-username>
 ```
 
-Then open a PR on GitHub from `<your-name>:submission/<your-name>` → `CloudBater/meteorfall-call:main`. The "Compare & pull request" banner appears on your fork after the push.
+Then open a PR on GitHub from `<your-github-username>:submission/<your-github-username>` → `CloudBater/meteorfall-call:main`. The "Compare & pull request" banner appears on your fork after the push.
 
 ## On AI tools
 

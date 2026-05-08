@@ -20,9 +20,9 @@ Five dimensions, scored 0–3. Hire bar: total ≥ 12, no zeros.
 | Dimension | 0 | 1 | 2 | 3 |
 |---|---|---|---|---|
 | **Triage / SDD / stakeholder pushback** | No `PLAN.md` | `PLAN.md` exists, lists what's shipped | Identifies impossible or risky asks in the brief and descopes them with reasoning | Above + at least one **counter-proposal** that preserves the intent of an impossible ask while killing the impossible parts |
-| **TDD** | No tests | Tests added at the end | Tests and impl interleaved | Test committed *before* its impl |
+| **TDD** | No tests | Tests added at the end | Tests and impl interleaved | Test committed *before* its impl, with a real red→green cycle (a single `test:` commit minutes before a monolithic impl dump scores 2, not 3) |
 | **Git hygiene** | Direct push to main, secrets leaked, or build artifacts committed | Branch + PR, no secrets | Atomic commits, conventional messages | Above + meaningful PR description with descope + pushback list |
-| **AI-CLI fluency** | No evidence of AI use, or unedited copy-paste failures | AI used, output unedited | `.claude/`, `AGENTS.md`, or session log shipped in repo | Above + visible prompt iteration |
+| **AI-CLI fluency** | No evidence of AI use, or unedited copy-paste failures | AI used, output unedited | `.claude/`, `AGENTS.md`, or session log shipped in repo | Above + visible prompt iteration **in commit history** (artifact quality alone does not promote 2 → 3) |
 | **Runs locally** | Doesn't run | Runs after manual fixes | One-command run, README accurate | Above + visual proof in PR description (loom, screenshot, or terminal paste) |
 
 Total: 15 max.

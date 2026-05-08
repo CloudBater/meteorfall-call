@@ -1,6 +1,10 @@
 # PLAN
 
 > Copy this file to `PLAN.md` (drop the `.template`) and fill it in **before** you start coding. CI checks that `PLAN.md` exists at repo root.
+>
+> **Commit-discipline tip**: TDD and Git-hygiene scores both look at your `git log`. Commit your tests as a separate commit *before* the implementation that makes them pass, and prefer multiple small commits over one big "submission" commit. This is the difference between a 1 and a 3 on those dimensions.
+>
+> **Tier-stacking warning**: rubric tiers are cumulative. Git-hygiene level 3 needs *both* atomic commits *and* a meaningful PR description — a great PR description on top of one giant scaffold commit caps at 2, not 3. Same shape on TDD: a `test:` commit minutes before a monolithic `feat:` dump caps at 2; level 3 needs a real red→green cycle.
 
 ## Topic I was assigned
 
