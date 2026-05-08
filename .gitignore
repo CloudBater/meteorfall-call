@@ -1,0 +1,43 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build output
+dist/
+build/
+.next/
+.nuxt/
+.svelte-kit/
+.output/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Local scratch (Claude Code hooks, candidate experimentation)
+.local/
+
+# Coverage
+coverage/
+.coverage
+htmlcov/
