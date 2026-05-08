@@ -1,0 +1,54 @@
+name: screen-check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz \
+            | tar -xz -C /usr/local/bin gitleaks
+
+      - name: Scan full git history for leaked secrets
+        run: gitleaks detect --redact -v --exit-code=1
+
+  submission:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PLAN.md must exist at repo root
+        run: |
+          if [ ! -f PLAN.md ]; then
+            echo "::error::PLAN.md is missing. Copy PLAN.template.md to PLAN.md and fill it in."
+            exit 1
+          fi
+
+      - name: No build artifacts committed
+        run: |
+          banned=$(git ls-files | grep -E '(^|/)(node_modules|dist|build|\.next|\.nuxt|\.svelte-kit|\.output|out|coverage)(/|$)' || true)
+          if [ -n "$banned" ]; then
+            echo "::error::Build artifacts or dependency directories committed:"
+            echo "$banned"
+            exit 1
+          fi
+
+      - name: At least one test file in repo
+        run: |
+          tests=$(git ls-files | grep -E '(\.test\.|\.spec\.|^tests?/|/tests?/)' | grep -v '^starter/' || true)
+          if [ -z "$tests" ]; then
+            echo "::error::No test files found outside starter/. TDD signal required."
+            exit 1
+          fi
+          echo "Found test files:"
+          echo "$tests"
