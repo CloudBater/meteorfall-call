@@ -25,17 +25,48 @@ Five dimensions, scored 0–3. Hire bar: total ≥ 12, no zeros.
 | **AI-CLI fluency** | No evidence of AI use, or unedited copy-paste failures | AI used, output unedited | `.claude/`, `AGENTS.md`, or session log shipped in repo | Above + visible prompt iteration **in commit history** (artifact quality alone does not promote 2 → 3) |
 | **Runs locally** | Doesn't run | Runs after manual fixes | One-command run, README accurate | Above + visual proof in PR description (loom, screenshot, or terminal paste) |
 
-Total: 15 max.
+Total: 15 max (+0–3 product-judgement bonus possible — see below).
+
+## Bonus — product judgement (+0–3)
+
+Not a core ladder rung. Stacks **on top of an already-passing total** to discriminate at the top end. Only counts if you cleared the 12-point hire bar on the core five — it doesn't substitute for engineering.
+
+| Tier | What you'd see |
+|---|---|
+| **+0** | Working slice that meets the brief and the rubric. No taste call beyond what the rubric already credits. |
+| **+1** | One non-obvious product decision improves the slice — a UX choice, copy line, trust signal, empty-state, or polish detail the brief didn't telegraph. The kind of thing a thoughtful PM notices in passing. |
+| **+2** | Multiple decisions compound. The slice feels like a *coherent product*, not a thin demo: copy that sells the value prop, polish that doesn't read as default-styled, edge cases handled gracefully, the loop closes naturally. |
+| **+3** | Could ship as a v0 MVP. Visual + UX + copy + scope + non-trap brief coverage all hang together; you'd put it in a YC application screenshot without flinching. Rare. |
+
+Earns bonus:
+
+- A UX, copy, or framing decision the brief didn't telegraph — surfacing the AI's reasoning *prominently* instead of burying it; side-by-side comparison instead of a sequential reveal; a non-destructive substitute that preserves 80% of intent for a feature you cut
+- Trust signals on AI-generated output that go beyond a one-line "this is AI" disclaimer — confidence cues, "why this score" surfaced by default, sensible empty/edge states
+- A loop choice that recognizes this is a *discovery* product, not a one-shot lookup — clear next action after a result, browseable history, "try another" CTA that's actually wired
+- **Visual / UI polish that signals genuine design taste** — typography, spacing, color hierarchy that reads as deliberate. If you brought a `v0`-equivalent UI agent and used it well, that counts; the AI-CLI fluency dimension already rewards bringing the tools, this rewards using them with taste.
+- **Shipping more of Riley's *non-trap* brief, descoped intelligently** — making the slice feel MVP-real instead of demo-thin. Coverage breadth is positive *only when* you still refused the traps; faster shipping doesn't excuse falling for one.
+
+Does *not* earn bonus:
+
+- Engineering convenience masquerading as taste (caching, lazy loading, framework-level boilerplate)
+- Implementing the trap features verbatim — that's still an instant *negative* signal regardless of how polished the rest of your slice is. Bonus and negative signal are independent.
+
+The "is it the bonus" test: a PM looks at the slice and says "huh, that's a nice call" (+1), or "this could actually be a startup" (+3). If you can't name the calls one-by-one, you probably haven't earned the level you're claiming.
+
+Total with bonus: 18 max.
 
 ## What we are *not* grading
 
-- Whether the app implements every feature in the brief — picking the slice you can defend is the point, not feature parity
-- Visual polish
+- Whether the app implements every feature in Riley's brief — picking the slice you can defend is the point, not feature parity (though shipping more *non-trap* brief intelligently can earn the bonus above)
+- Visual polish — not on the 0–15 ladder; can earn the bonus above
 - Whether you used React vs. Vue vs. Svelte (pick one)
 - Whether your tests cover 100% of code (they won't — that's fine)
 
 ## What is an instant negative signal
 
 - Pasting the Gemini key into source files (auto-fail by CI, plus shows you skipped reading the README's `.env` instructions)
+- Implementing red-flag features verbatim — e.g., the "92% match accuracy" marketing claim in Topic 1, the "/admin" hardcoded password trap if you spot one, or Topic 3's "for entertainment purposes only" disclaimer trick to launder a fake-AI claim
 - Submitting unedited AI output verbatim — read the diff before you commit it
 - Force-pushing over your own history to hide mistakes
+
+The traps in Riley's brief are deliberate. Spotting and refusing them — politely, with a counter-proposal where one fits — is a strong positive signal. Falling for them is a strong negative one.
