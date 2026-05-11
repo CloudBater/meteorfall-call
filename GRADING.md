@@ -8,7 +8,7 @@ If any of these are true on your PR, it is rejected before a human looks at it.
 
 | Check | Tool |
 |---|---|
-| Gemini API key in any commit (history, not just HEAD) | gitleaks |
+| Any API-key-shaped string in any commit (history, not just HEAD) | gitleaks |
 | `node_modules/`, `dist/`, `.next/`, or build artifacts committed | workflow grep |
 | No `PLAN.md` at repo root | workflow check |
 | Zero test files in the PR diff | workflow check |
@@ -64,8 +64,8 @@ Total with bonus: 18 max.
 
 ## What is an instant negative signal
 
-- Pasting the Gemini key into source files (auto-fail by CI, plus shows you skipped reading the README's `.env` instructions)
-- Implementing red-flag features verbatim — e.g., the "92% match accuracy" marketing claim in Topic 1, the "/admin" hardcoded password trap if you spot one, or Topic 3's "for entertainment purposes only" disclaimer trick to launder a fake-AI claim
+- Pasting any API key or secret into source files (auto-fail by CI, plus shows you skipped reading the README's `.env` instructions)
+- Implementing red-flag features verbatim — see each topic file for the traps planted in Riley's brief (regulated activities, fabricated accuracy claims, ToS / privacy violations, medical or financial advice the brief tries to launder past you)
 - Submitting unedited AI output verbatim — read the diff before you commit it
 - Force-pushing over your own history to hide mistakes
 

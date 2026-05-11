@@ -1,8 +1,8 @@
-# AI Vibe-Coding Screen — Fullstack AI Intern (Take-Home)
+# Fullstack Intern Vibe-Coding Screen (Take-Home)
 
 > Welcome to the screen. Read this entire document **before** you start coding.
 
-You are a fullstack engineer joining an early-stage AI startup. The startup is run by **Riley Vance**, a founder with strong opinions, weak technical instincts, and an Olympic-level capacity for sending dramatic messages at unhinged hours.
+You are a fullstack engineer joining an early-stage startup. The startup is run by **Riley Vance**, a founder with strong opinions, weak technical instincts, and an Olympic-level capacity for sending dramatic messages at unhinged hours.
 
 Riley is going to send you a brief. The brief will demand a startup-launching, investor-impressing, world-changing product. The brief will be partially impossible, partially illegal, partially incoherent.
 
@@ -11,42 +11,45 @@ Your job is **not** to ship Riley's vision. Your job is to:
 1. Read carefully.
 2. Identify the *real* good idea hiding inside the rant.
 3. Push back on the impossible/risky/expensive parts — politely, with reasoning.
-4. Ship a defensible thin slice.
+4. Ship a defensible thin slice that talks to a real public API.
 5. Document everything in `PLAN.md`.
 
 This is a screen for senior judgement under stakeholder pressure, not for raw coding speed.
+
+> **About this screen, in plain language**: we hire one person from this round. If that's not you, we still want you to walk away with something — the rubric you read here, the [`examples/`](./examples) we ship with this repo, and the experience of building a real take-home with AI tooling. Treat it as a learning artifact, not just a filter.
 
 ---
 
 ## Mechanics
 
-- **Format**: take-home. The HR interview invitation email tells you which topic you got and ships you the Gemini API key.
+- **Format**: take-home. The HR interview invitation email tells you which topic you got.
 - **Deadline**: open your PR **at least 24 hours before** your scheduled interview slot. We need time to grade it before we sit down with you.
 - **Tools**: any tool, any method. Claude Code, Codex, Cursor, web research, pair programming with a friend — whatever you'd actually reach for. The whole point is to see how you work, not to handicap you.
 - **Submission flow**: fork this repo to your own GitHub account, push `submission/<your-github-username>` to your fork, and open a PR from your fork against `CloudBater/meteorfall-call:main`. You don't have write access to the upstream repo — that's expected.
 - **CI on your PR**: if this is your first PR to this repo, GitHub holds workflow runs for maintainer approval. Empty checks aren't a failure — the grader will release them when they pick up the PR. Don't force-push to "fix" it.
 - **Stack**: free choice for FE and BE. Both are required.
-- **BE proxies Gemini**: the FE never holds the API key. The Gemini key is delivered with the same HR invitation email.
-- **Data layer**: [DummyJSON](https://dummyjson.com) snapshots baked into `data/` as static JSON (`products.json`, `users.json`, `recipes.json`). No network calls required. The shape matches the live API; the live URL works too but rate-limits aggressively (~1–2 req/s).
-- **Vendor consistency**: Riley sometimes name-drops competing AI products in their pitches (e.g. Whisper). Treat that as stakeholder color, not a technical requirement — our stack is Gemini.
+- **BE proxies the upstream API**: even if the API you pick is keyless, the FE must call your BE, and your BE calls the upstream. Add caching / rate-limit handling on BE. This is a production-engineering signal.
+- **No secrets in source**: even though most APIs in this screen don't need a key, treat the discipline as if they did. Use `.env`. Anything that looks key-shaped in git history triggers an auto-fail.
 - **One-command local run**: `make dev`, `npm run dev`, `docker compose up`, your call. The grader must be able to start it without reading code.
 
 ## How a topic gets assigned
 
 There are three topics in [`topics/`](./topics). They are publicly visible — read them all when you get the invite. The HR email tells you which one is yours. Different candidates may get different topics; sometimes the topic is randomized, sometimes intentional.
 
-| | Topic | DummyJSON endpoint | One-line pitch |
+All three pick from [public-apis](https://github.com/public-apis/public-apis) — keyless, production-grade, real users would use them.
+
+| | Topic | Upstream API | One-line pitch |
 |---|---|---|---|
-| 1 | [SoulSync](./topics/topic-1-soulsync.md) | `/users` | AI-matchmaking dating app, score 0–100 |
-| 2 | [ShopGenie](./topics/topic-2-shopgenie.md) | `/products` | AI shopping concierge, picks items for you |
-| 3 | [ChefMind](./topics/topic-3-chefmind.md) | `/recipes` | AI recipe predictor based on your fridge |
+| 1 | [MarketMage](./topics/topic-1-marketmage.md) | [ExchangeRate.host](https://exchangerate.host) | Real-time FX dashboard with "AI" portfolio rebalancing |
+| 2 | [Crumb](./topics/topic-2-crumb.md) | [TheMealDB](https://www.themealdb.com/api.php) | Mukbang-AI cooking app with auto-nutritionist |
+| 3 | [DevScore](./topics/topic-3-devscore.md) | [GitHub REST API](https://docs.github.com/en/rest) | FICO-style developer ranking dashboard |
 
 ## What you submit
 
 A pull request against `main` with:
 
 1. A `PLAN.md` (copied from `PLAN.template.md` and filled in **first**)
-2. A working thin slice that runs locally with one command
+2. A working thin slice that runs locally with one command and talks to the real upstream API through your BE
 3. At least one test — committed *before* its impl earns the top TDD score (commit timestamps are graded)
 4. A PR description that includes:
    - The list of features you cut and why
@@ -57,7 +60,7 @@ A pull request against `main` with:
 
 If any of these red on your PR, a human won't even look:
 
-- A Gemini-shaped key appears anywhere in git history (`gitleaks`)
+- Any API-key-shaped string appears anywhere in git history (`gitleaks`)
 - `node_modules/`, `dist/`, `.next/`, or build artifacts committed
 - No `PLAN.md` at repo root
 - Zero test files in the PR diff
@@ -71,7 +74,7 @@ Fork `CloudBater/meteorfall-call` to your own GitHub account first (use the **Fo
 git clone https://github.com/<your-github-username>/meteorfall-call.git
 cd meteorfall-call
 cp .env.example .env
-# paste the GEMINI_API_KEY from your HR invitation email
+# .env stays empty unless your topic's API needs a key (most don't)
 cp PLAN.template.md PLAN.md
 # fill PLAN.md before you start coding
 ```
@@ -92,8 +95,10 @@ Use them. Claude Code, Codex, Cursor — whatever you reach for daily. We want t
 
 What we are *not* looking for: unedited AI output dumped wholesale into a PR. Read the diff before you commit it.
 
+See [`examples/`](./examples) for working `CLAUDE.md`, `AGENTS.md`, and skill files that demonstrate how we expect a thoughtful engineer to configure their AI tooling for a project this size. You can copy them as a starting point.
+
 ---
 
-Read [`GRADING.md`](./GRADING.md) before you start.
+Read [`GRADING.md`](./GRADING.md) before you start. Then check out [`examples/`](./examples).
 
 Good luck. Riley's about to send you a brief.
