@@ -10,6 +10,7 @@ We hire one engineer per round from this screen. The other candidates leave with
 |---|---|
 | [`CLAUDE.md`](./CLAUDE.md) | A short, *load-bearing* project instructions file for Claude Code — what conventions and constraints to feed the model up-front so you don't have to re-explain them every prompt |
 | [`AGENTS.md`](./AGENTS.md) | Working agreement between you and your AI tooling — when to lean on it, when to push back, what "reading the diff" actually means |
+| [`REFUSAL_PATTERNS.md`](./REFUSAL_PATTERNS.md) | The shape of a thoughtful "no". Three refusal forms (counter-propose / refuse-with-reasoning / refuse-on-facts), regulation-naming guide, the disclaimer-laundering trap |
 | [`.claude/skills/commit-discipline.md`](./.claude/skills/commit-discipline.md) | A reusable skill file: how to structure commits so the `git log` itself becomes a TDD + scope-discipline artifact |
 | [`.claude/skills/triage-brief.md`](./.claude/skills/triage-brief.md) | A reusable skill file: how to take a chaotic stakeholder brief (the Riley pattern) and produce a `PLAN.md` that scores well on the rubric |
 
