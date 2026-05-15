@@ -55,6 +55,12 @@ The "is it the bonus" test: a PM looks at the slice and says "huh, that's a nice
 
 Total with bonus: 18 max.
 
+## Ambitious refusal scores higher than ambitious compliance
+
+Some topics in this screen are mostly trap. If your honest read of the brief is "six of the seven asks are red flags and the right thin slice is one feature the brief didn't even mention", **that is the senior answer**, not under-delivery. Ship the one defensible feature, document the refusals in `PLAN.md`, and stop. A polished, working slice of the legal-and-ethical kernel beats a half-built version of the seven-bullet wish list.
+
+Graders: a candidate who refuses most of the brief and ships a small, coherent slice should not be marked down on Triage or product-judgement for "not enough features" — that's the rubric working as designed. The 5-dimension ladder still applies in full.
+
 ## What we are *not* grading
 
 - Whether the app implements every feature in Riley's brief — picking the slice you can defend is the point, not feature parity (though shipping more *non-trap* brief intelligently can earn the bonus above)
