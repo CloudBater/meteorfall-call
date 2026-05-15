@@ -13,7 +13,7 @@ A fullstack take-home: thin vertical slice that exercises Topic *N* from the par
 - **FE**: <fill in> (e.g. React + Vite + TypeScript)
 - **BE**: <fill in> (e.g. Node + Express + TypeScript)
 - **Tests**: <fill in> (e.g. Vitest for FE, node:test for BE)
-- **Run**: `make dev` brings FE + BE up on `:5173` and `:3000`
+- **Run**: `<your-run-command>` brings FE + BE up on `:5173` and `:3000` (could be `make dev`, `npm run dev`, `docker compose up` — pick whatever your stack uses)
 
 > Why: When Claude writes code, it picks libraries. Pin the choices up-front so you don't get a `fastify`-flavored route handler in a project that's otherwise Express, or `jest` in a `vitest` project.
 

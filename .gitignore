@@ -10,7 +10,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Build output
+# Build output / tool caches
 dist/
 build/
 .next/
@@ -18,6 +18,9 @@ build/
 .svelte-kit/
 .output/
 out/
+.vite/
+.turbo/
+.cache/
 
 # Python
 __pycache__/
