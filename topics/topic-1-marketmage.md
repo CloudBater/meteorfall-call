@@ -57,7 +57,7 @@ Notable shape facts that should inform your scope:
 
 - Frankfurter publishes **once per business day** at 16:00 CET. There is no "sub-second" feed. Anything labeled "real-time" in your UI is a lie.
 - The API has **no prediction endpoint**, no candles, no intraday data. You have *daily reference rates*.
-- About 30 currencies are supported. The full list is at `GET /currencies`.
+- About 30 currencies are supported (all in the ECB reference set). The full list is at `GET /currencies`. Riley's brief lists currencies that **are not all in that set** — surfacing the mismatch in `PLAN.md` (which you keep, which you drop, why) is positive signal. Silently letting the API drop unsupported codes is a quiet failure mode.
 
 Your BE must proxy Frankfurter. Even though there's no key to protect, the BE-as-proxy gives you a place to cache (the data doesn't change intra-day) and a place to ratelimit-shape your own users so a runaway client doesn't hammer the upstream.
 
